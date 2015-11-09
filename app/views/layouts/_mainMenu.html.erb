@@ -3,7 +3,7 @@
 		<li>
 			<a href="./">Home</a>
 		</li>
-<% @loginUser = getLoginUser()
+<% @loginUser = sessionGetLoginUser()
 if @loginUser %>
 		<li>
 			<a href="./logout">Jesteś zalogowan(y/a) jako <%= @loginUser['email'] %></a>

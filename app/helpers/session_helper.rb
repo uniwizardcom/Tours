@@ -1,38 +1,45 @@
 module SessionHelper
-	def logoutExecute
+	def sessionLogoutExecute
 		session[ENV['HTTP_HOST']] = false
 	end
 
-	def loginExecute(keyToCheck, passToCheck)
-		session[ENV['HTTP_HOST']] = {
-					'user' => {
+	def sessionLoginExecute(keyToCheck, passToCheck)
+		sessionSetValue('user', {
 							'email' => keyToCheck,
 							'pass' => passToCheck
-						}
-				}
+						})
 	end
 
-	def getLoginUser
-		checkForFirstUse()
-		#puts session[ENV['HTTP_HOST']].include?("user")
-		#puts session[ENV['HTTP_HOST']]
-		#puts (session[ENV['HTTP_HOST']].class == Hash)
-		if (session[ENV['HTTP_HOST']].class == Array || session[ENV['HTTP_HOST']].class == Hash) && session[ENV['HTTP_HOST']].include?("user")
-			return session[ENV['HTTP_HOST']]['user']
-		end
-
-		puts "-- false"
-		return false
+	def sessionGetLoginUser
+		sessionCheckForFirstUse()
+		return sessionGetValue('user', false)
 	end
 
-	def checkForFirstUse
-		@res = session[ENV['HTTP_HOST']]
-		if !@res
-			session[ENV['HTTP_HOST']] = {
-					'user' => false
-				}
+	def sessionCheckForFirstUse
+		if !(@res = session[ENV['HTTP_HOST']])
+			sessionSetValue('user', false)
 		end
-
 		return @res
+	end
+
+	def sessionSetValue(key, value)
+		if (session[ENV['HTTP_HOST']].class == Array || session[ENV['HTTP_HOST']].class == Hash)
+			session[ENV['HTTP_HOST']][key] = value
+		else
+			session[ENV['HTTP_HOST']] = {
+				key => value
+			}
+		end
+	end
+
+	def sessionGetValue(key, defaultValue)
+		if sessionCheckExists("user")
+			return session[ENV['HTTP_HOST']][key]
+		end
+		return defaultValue
+	end
+
+	def sessionCheckExists(key)
+		return ((session[ENV['HTTP_HOST']].class == Array || session[ENV['HTTP_HOST']].class == Hash) && session[ENV['HTTP_HOST']].include?(key))
 	end
 end

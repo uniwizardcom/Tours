@@ -3,20 +3,20 @@ class StaticController < ApplicationController
 
   def index
   	@blabla = "xxxxxxxxxxxxxxxxxxxx xxxxxxxxxxx"
-  	if getLoginUser()
+  	if sessionGetLoginUser()
   		@blabla = "Zalogowany"
   	end
   end
 
   def login
-  	if getLoginUser()
+  	if sessionGetLoginUser()
   		//
   	end
   end
 
   def loginExe
   	puts "loginExe"
-  	loginExecute(
+  	sessionLoginExecute(
   		params['appdata']['email'],
   		params['appdata']['pass']
   	)
@@ -24,11 +24,11 @@ class StaticController < ApplicationController
   end
 
   def logout
-  	logoutExecute()
+  	sessionLogoutExecute()
   end
 
   def registration
-  	if getLoginUser()
+  	if sessionGetLoginUser()
   		//
   	end
   end
