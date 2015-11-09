@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(version: 20151109093141) do
 
   create_table "users_models", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "description", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.text    "name",        limit: 65535
+    t.text    "description", limit: 65535
+    t.integer "created_at",  limit: 4,     default: 0, null: false
+    t.integer "updated_at",  limit: 4,     default: 0, null: false
   end
 
 end
