@@ -11,6 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+# For update files from DB
+# bin/rake db:migrate RAILS_ENV=development
+
 ActiveRecord::Schema.define(version: 20151109093141) do
 
   create_table "users_models", force: :cascade do |t|

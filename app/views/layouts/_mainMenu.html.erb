@@ -1,0 +1,23 @@
+<div>
+	<ul>
+		<li>
+			<a href="./">Home</a>
+		</li>
+<% @loginUser = getLoginUser()
+if @loginUser %>
+		<li>
+			<a href="./logout">Jesteś zalogowan(y/a) jako <%= @loginUser['email'] %></a>
+		</li>
+		<li>
+			<a href="./logout">Logout</a>
+		</li>
+<% else %>
+		<li>
+			<a href="./login">Login</a>
+		</li>
+		<li>
+			<a href="./registration">Registration</a>
+		</li>
+<% end -%>
+	</ul>
+</div>

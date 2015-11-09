@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   get '/index', to:'static#index'
   get '/login', to:'static#login'
+  post '/login', to:'static#loginExe'
   get '/logout', to:'static#logout'
+  get '/registration', to:'static#registration'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

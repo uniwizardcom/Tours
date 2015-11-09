@@ -1,2 +1,28 @@
-<h1>Static#login</h1>
-<p>Find me in app/views/static/login.html.erb</p>
+<h1>Login</h1>
+<p>Login for app</p>
+
+<form action="" method="POST">
+	<table border="1">
+		<tbody>
+			<tr>
+				<td>E-mail</td>
+				<td>
+					<input type="text" name="appdata[email]" />
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>
+					<input type="password" name="appdata[pass]" />
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="submit" value="&#x2713;" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+</form>

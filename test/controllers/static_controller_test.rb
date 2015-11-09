@@ -16,4 +16,9 @@ class StaticControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get registration" do
+    get :registration
+    assert_response :success
+  end
+
 end

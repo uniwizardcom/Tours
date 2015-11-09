@@ -1,2 +1,23 @@
-<h1>Static#logout</h1>
-<p>Find me in app/views/static/logout.html.erb</p>
+<h1>Logout</h1>
+<p>Nastapiło wylogowanie.</p>
+<p>Za <span id="second_for_goto_homepage">...</span>sec. nastąpi przekierowanie na stronę główną. Jeżeli czekasz zbyt długo <a href="./">... kliknij ...</a></p>
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var second_for_goto_homepage = 10;
+function gotoNextSecond() {
+	document.getElementById('second_for_goto_homepage').innerHTML = second_for_goto_homepage;
+	if(second_for_goto_homepage > 0) {
+		setTimeout(function(){
+			second_for_goto_homepage --;
+			gotoNextSecond();
+		}, 1000);
+	}
+	else {
+		location.href = './';
+	}
+}
+gotoNextSecond();
+/* ]]> */
+</script>
